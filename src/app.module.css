@@ -2,7 +2,7 @@
   padding: 50px 0;
   background-color: darkgreen;
   height: 100vh;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 .cardContainerBottom {
@@ -10,11 +10,11 @@
 }
 
 .cardContainerTop *:not(h1) {
-  animation: card-top 2s;
+  animation: card-top 1.5s;
 }
 
 .cardContainerBottom *:not(h1) {
-  animation: card-bottom 2s;
+  animation: card-bottom 1.5s;
 }
 
 @keyframes card-top {
