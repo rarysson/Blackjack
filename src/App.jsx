@@ -10,19 +10,19 @@ function App() {
   const [dealerCards, setDealerCards] = createSignal([]);
   const [playerCards, setPlayerCards] = createSignal([]);
 
-  async function drawPlayerCard(numberOfCards = 1) {
+  async function drawDealerCard(numberOfCards = 1) {
     try {
-      const card = await drawCards(numberOfCards);
-      setPlayerCards(c => [...card, ...c])
+      const cards = await drawCards(numberOfCards);
+      setDealerCards([...cards, ...dealerCards()])
     } catch {
       showAlertMessage("Failed to draw card");
     }
   }
 
-  async function drawDealerCard(numberOfCards = 1) {
+  async function drawPlayerCard(numberOfCards = 1) {
     try {
-      const card = await drawCards(numberOfCards);
-      setDealerCards(c => [...card, ...c])
+      const cards = await drawCards(numberOfCards);
+      setPlayerCards([...cards, ...playerCards()])
     } catch {
       showAlertMessage("Failed to draw card");
     }
@@ -47,6 +47,7 @@ function App() {
         className={styles.cardContainerTop}
         title="Dealer"
         cards={dealerCards()}
+        titleOnBottom={true}
       />
 
       <CardsHolder
