@@ -1,0 +1,27 @@
+.board {
+  width: fit-content;
+  transform: translate(calc(50vw - 50%), 15vh);
+  text-align: center;
+  margin-top: -75px;
+}
+
+.message {
+  font-size: 40px;
+  font-weight: bold;
+  color: whitesmoke;
+}
+
+.btn {
+  margin-top: 15px;
+  cursor: pointer;
+  font-size: 20px;
+  color: aliceblue;
+  background-color: steelblue;
+  padding: 15px;
+  border: none;
+  border-radius: 10px;
+}
+
+.btn:hover {
+  background-color: royalblue;
+}

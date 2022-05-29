@@ -1,0 +1,23 @@
+.actionsContainer {
+  width: fit-content;
+  transform: translate(calc(50vw - 50%), 15vh);
+}
+
+.actionBtn {
+  width: 150px;
+  cursor: pointer;
+  font-size: 30px;
+  color: aliceblue;
+  background-color: steelblue;
+  padding: 15px;
+  border: none;
+  border-radius: 10px;
+}
+
+.actionBtn:hover {
+  background-color: royalblue;
+}
+
+.actionBtn:first-of-type {
+  margin-right: 250px;
+}

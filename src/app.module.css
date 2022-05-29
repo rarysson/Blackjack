@@ -6,14 +6,14 @@
 }
 
 .cardContainerBottom {
-  transform: translateY(calc(60vh - 100%));
+  transform: translateY(calc(55vh - 100%));
 }
 
-.cardContainerTop > *:not(h1) {
+.cardContainerTop *:not(h1) {
   animation: card-top 2s;
 }
 
-.cardContainerBottom > *:not(h1) {
+.cardContainerBottom *:not(h1) {
   animation: card-bottom 2s;
 }
 

@@ -1,4 +1,4 @@
-import { createMemo, For } from "solid-js";
+import { createEffect, createMemo, For } from "solid-js";
 import { Card } from "../card/Card";
 
 import styles from "./cardsHolder.module.css";
@@ -22,6 +22,10 @@ export function CardsHolder(props) {
 
       return acc + value;
     }, 0);
+  });
+
+  createEffect(() => {
+    props.onPointsChange(points());
   });
 
   return (
