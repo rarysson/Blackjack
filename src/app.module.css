@@ -1,3 +1,30 @@
 .app {
   padding: 50px 0;
+  background-color: darkgreen;
+  height: 100vh;
+  overflow-x: hidden;
+}
+
+.cardContainerBottom {
+  transform: translateY(calc(60vh - 100%));
+}
+
+.cardContainerTop > *:not(h1) {
+  animation: card-top 2s;
+}
+
+.cardContainerBottom > *:not(h1) {
+  animation: card-bottom 2s;
+}
+
+@keyframes card-top {
+  0% {
+    transform: translate(calc(50vw - 50%), calc(50vh - 50%));
+  }
+}
+
+@keyframes card-bottom {
+  0% {
+    transform: translate(calc(50vw - 50%), calc(-50vh + 50%));
+  }
 }

@@ -1,0 +1,7 @@
+.card {
+  width: 150px;
+  height: 210px;
+  font-size: 50px;
+  display: grid;
+  place-items: center;
+}

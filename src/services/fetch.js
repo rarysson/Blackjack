@@ -3,7 +3,11 @@ import { getDeckId, setDeckId } from "./storage";
 export async function loadDeck() {
   const id = getDeckId();
 
-  if (id) return;
+  if (id) {
+    await reshuffleDeck();
+
+    return;
+  }
 
   const response = await fetch("https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=6");
   const deck = await response.json();
@@ -18,7 +22,7 @@ export async function drawCards(numberOfCards = 1) {
     const response = await fetch(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=${numberOfCards}`);
     const cards = await response.json();
 
-    return cards.map(card => ({
+    return cards.cards.map(card => ({
       id: card.code,
       img: card.image,
       value: card.value

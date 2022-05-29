@@ -1,27 +1,59 @@
-import { onMount } from "solid-js";
+import { createSignal, onMount } from "solid-js";
 import { Alert } from "./components/alert/Alert";
-import { setAlertMessage } from "./services/alert";
-import { loadDeck } from "./services/fetch";
+import { showAlertMessage } from "./services/alert";
+import { drawCards, loadDeck } from "./services/fetch";
 
-import styles from './app.module.css'
+import styles from "./app.module.css";
+import { CardsHolder } from "./components/cardsHolder/CardsHolder";
 
 function App() {
+  const [dealerCards, setDealerCards] = createSignal([]);
+  const [playerCards, setPlayerCards] = createSignal([]);
+
+  async function drawPlayerCard(numberOfCards = 1) {
+    try {
+      const card = await drawCards(numberOfCards);
+      setPlayerCards(c => [...card, ...c])
+    } catch {
+      showAlertMessage("Failed to draw card");
+    }
+  }
+
+  async function drawDealerCard(numberOfCards = 1) {
+    try {
+      const card = await drawCards(numberOfCards);
+      setDealerCards(c => [...card, ...c])
+    } catch {
+      showAlertMessage("Failed to draw card");
+    }
+  }
+
   onMount(async () => {
     try {
       await loadDeck();
-    } catch {
-      setAlertMessage("Failed to load deck");
 
-      setTimeout(() => {
-        setAlertMessage("");
-      }, 3000);
+      drawDealerCard();
+      drawPlayerCard(2);
+    } catch {
+      showAlertMessage("Failed to load deck");
     }
   });
 
   return (
     <div className={styles.app}>
       <Alert />
-      <h1>Blackjack</h1>
+
+      <CardsHolder
+        className={styles.cardContainerTop}
+        title="Dealer"
+        cards={dealerCards()}
+      />
+
+      <CardsHolder
+        className={styles.cardContainerBottom}
+        title="Player"
+        cards={playerCards()}
+      />
     </div>
   );
 }
